@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 // middleware ======
 app.use(cors(
   {
-    // origin: ['https://madhab-portfolio-client.vercel.app', 'http://localhost:5173']
+    // origin: ['https://madhab-portfolio-client-hltg.vercel.app', 'http://localhost:5173']
     origin: "*"
 
   }
@@ -30,6 +30,15 @@ const sendEmail =  (emailAddress, emailData) => {
       pass: process.env.TRANSPORTER_PASS,
     },
   });
+
+  // verify connection configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.log(error, 'mail not send');
+  } else {
+    console.log("Server is ready to take our messages");
+  }
+});
 
   // const mailBody = {
   //   from: `"MADHAB MOZUMDER" <${process.env.TRANSPORTER_EMAIL}>`, // sender address
